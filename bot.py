@@ -3,6 +3,7 @@ from discord.ext import commands
 import yt_dlp  
 import asyncio
 import os
+from dotenv import load_dotenv
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -104,5 +105,10 @@ async def stop(ctx):
     else:
         await ctx.send("❌ No estoy en un canal de voz.")
 
-client.run('MTM1NDE4NTc2MDU1MDQyNDc1Nw.GINj4B.S9FhIQwPf23jFrQzIzFu6iDf6ZW7Stsqf9rGn0')
+load_dotenv()  # Carga las variables de entorno del archivo .env
+TOKEN = os.getenv("DISCORD_TOKEN")  # Obtiene el token de la variable de entorno
+
+client = discord.Client(intents=discord.Intents.default())
+client.run(TOKEN)
+
 
