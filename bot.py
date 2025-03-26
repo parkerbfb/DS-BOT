@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import yt_dlp  
 import asyncio
+import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -103,5 +104,5 @@ async def stop(ctx):
     else:
         await ctx.send("❌ No estoy en un canal de voz.")
 
-client.run('MTM1NDE4NTc2MDU1MDQyNDc1Nw.GFht2m.X4XQLr7TZ-ncN1j6cUTRkBDgNvpuC4hERf2SL4')
+client.run('MTM1NDE4NTc2MDU1MDQyNDc1Nw.GINj4B.S9FhIQwPf23jFrQzIzFu6iDf6ZW7Stsqf9rGn0')
 
