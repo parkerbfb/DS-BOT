@@ -1,6 +1,6 @@
 # config.py
 
-TOKEN = 'TU_BOT_TOKEN_AQUI'  # Aquí va el token de tu bot de Discord
+TOKEN = 'MTM1NDE4NTc2MDU1MDQyNDc1Nw.GINj4B.S9FhIQwPf23jFrQzIzFu6iDf6ZW7Stsqf9rGn0'  # Aquí va el token de tu bot de Discord
 
 # Obtén el token de tu bot: Si aún no tienes un token, puedes crearlo desde el Portal de Desarrolladores de Discord.
 
