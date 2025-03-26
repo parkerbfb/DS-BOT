@@ -3,7 +3,6 @@ from discord.ext import commands
 import yt_dlp  
 import asyncio
 import os
-from dotenv import load_dotenv
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -104,9 +103,6 @@ async def stop(ctx):
         await ctx.send("⏹ Bot desconectado del canal de voz.")
     else:
         await ctx.send("❌ No estoy en un canal de voz.")
-load_dotenv()
-TOKEN = os.getenv("MTM1NDE4NTc2MDU1MDQyNDc1Nw.GINj4B.S9FhIQwPf23jFrQzIzFu6iDf6ZW7Stsqf9rGn0")
-client = discord.Client()
-client.run(TOKEN)
+
 client.run('MTM1NDE4NTc2MDU1MDQyNDc1Nw.GINj4B.S9FhIQwPf23jFrQzIzFu6iDf6ZW7Stsqf9rGn0')
 
