@@ -5,6 +5,17 @@ import asyncio
 import os
 from dotenv import load_dotenv
 
+# Cargar variables de entorno desde el archivo .env
+load_dotenv()  # Carga las variables de entorno
+
+# Obtener el token desde las variables de entorno
+TOKEN = os.getenv("DISCORD_TOKEN") 
+
+if not TOKEN:
+    print("Error: No se pudo cargar el token de Discord. Asegúrate de que el archivo .env esté presente y correcto.")
+    exit(1)  # Termina el programa si el token no se carga
+
+# Configuración del bot y el cliente
 intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix=",", intents=intents)  # Aquí defines el cliente como Bot
@@ -21,12 +32,12 @@ ytdl_opts = {
     },
 }
 
-
 ffmpeg_opts = {
     'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
     'options': '-vn',
 }
 
+# Funciones para manejar la conexión de voz y la reproducción de audio
 async def join_vc(ctx):
     """Hace que el bot se conecte a un canal de voz"""
     if not ctx.author.voice:
@@ -68,6 +79,7 @@ async def play_audio(ctx, url):
         print(f"❌ Error al reproducir: {e}")
         await ctx.send("❌ Hubo un problema al reproducir el audio.")
 
+# Eventos y comandos
 @client.event
 async def on_ready():
     print(f'Bot conectado como {client.user}')
@@ -104,7 +116,5 @@ async def stop(ctx):
     else:
         await ctx.send("❌ No estoy en un canal de voz.")
 
-load_dotenv()  # Carga las variables de entorno del archivo .env
-TOKEN = os.getenv("DISCORD_TOKEN")  # Obtiene el token de la variable de entorno
-
-client.run(TOKEN)  # Inicia el bot con el token
+# Inicia el bot con el token
+client.run(TOKEN)
