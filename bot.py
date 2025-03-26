@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 intents = discord.Intents.default()
 intents.message_content = True
-client = commands.Bot(command_prefix=",", intents=intents)  
+client = commands.Bot(command_prefix=",", intents=intents)  # Aquí defines el cliente como Bot
 
 # Configuración para descargar audio de YouTube
 ytdl_opts = {
@@ -80,7 +80,6 @@ async def test(ctx):
 async def on_message(message):
     await client.process_commands(message)  
 
-
 @client.command()
 async def play(ctx, url: str):
     """Comando para reproducir música"""
@@ -108,7 +107,4 @@ async def stop(ctx):
 load_dotenv()  # Carga las variables de entorno del archivo .env
 TOKEN = os.getenv("DISCORD_TOKEN")  # Obtiene el token de la variable de entorno
 
-client = discord.Client(intents=discord.Intents.default())
-client.run(TOKEN)
-
-
+client.run(TOKEN)  # Inicia el bot con el token
