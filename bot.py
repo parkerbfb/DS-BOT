@@ -7,10 +7,8 @@ from dotenv import load_dotenv
 import ffmpeg
 import importlib.metadata
 
-
 print(f"yt-dlp version: {importlib.metadata.version('yt-dlp')}")
 print(f"discord.py version: {discord.__version__}")
-
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()  # Carga las variables de entorno
@@ -21,6 +19,11 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     print("Error: No se pudo cargar el token de Discord. Asegúrate de que el archivo .env esté presente y correcto.")
     exit(1)  # Termina el programa si el token no se carga
+
+# Guardar cookies desde la variable de entorno
+COOKIES_PATH = "cookies.txt"
+with open(COOKIES_PATH, "w") as f:
+    f.write(os.getenv("YOUTUBE_COOKIES", ""))
 
 # Configuración del bot y el cliente
 intents = discord.Intents.default()
@@ -34,6 +37,7 @@ ytdl_opts = {
     'quiet': True,
     'extractaudio': True,
     'outtmpl': 'downloads/%(id)s.%(ext)s',
+    'cookies': COOKIES_PATH,  # 🟢 Usa las cookies guardadas
     'http_headers': {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
     },
@@ -74,7 +78,7 @@ async def play_audio(ctx, url):
     print(f"📥 URL recibida: {url}")
 
     try:
-        with yt_dlp.YoutubeDL({'format': 'bestaudio', 'noplaylist': True}) as ydl:
+        with yt_dlp.YoutubeDL(ytdl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
             URL = info['url']
             print(f"🎵 URL de audio obtenida: {URL}")
