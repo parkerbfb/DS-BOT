@@ -4,6 +4,11 @@ import yt_dlp
 import asyncio
 import os
 from dotenv import load_dotenv
+import ffmpeg
+
+print(f"discord.py version: {discord.__version__}")
+print(f"yt-dlp version: {yt_dlp.__version__}")
+print(f"ffmpeg-python version: {ffmpeg.__version__}")
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()  # Carga las variables de entorno
