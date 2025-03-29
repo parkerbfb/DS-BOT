@@ -5,13 +5,12 @@ import asyncio
 import os
 from dotenv import load_dotenv
 import ffmpeg
-import pkg_resources
 import importlib.metadata
 
-print(f"discord.py version: {discord.__version__}")
-print(f"yt-dlp version: {yt_dlp.__version__}")
-print(f"yt-dlp version: {pkg_resources.get_distribution('yt-dlp').version}")
+
 print(f"yt-dlp version: {importlib.metadata.version('yt-dlp')}")
+print(f"discord.py version: {discord.__version__}")
+
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()  # Carga las variables de entorno
