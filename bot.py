@@ -30,6 +30,17 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix=",", intents=intents)  # Aquí defines el cliente como Bot
 
+cookies = os.getenv("YOUTUBE_COOKIES", "")
+if not cookies:
+    print("❌ No se cargaron las cookies desde la variable de entorno YOUTUBE_COOKIES.")
+else:
+    print(f"✅ Cookies cargadas correctamente: {cookies[:100]}...")  # Muestra los primeros 100 caracteres
+
+COOKIES_PATH = "cookies.txt"
+with open(COOKIES_PATH, "w") as f:
+    f.write(cookies)
+print(f"✅ Cookies guardadas en {COOKIES_PATH}")
+
 # Configuración para descargar audio de YouTube
 ytdl_opts = {
     'format': 'bestaudio[ext=webm]/bestaudio',
